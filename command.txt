@@ -1,0 +1,21 @@
+flex -o lex.yy.c code.l
+gcc -o code lex.yy.c -lfl
+
+cat input.txt | ./code
+./code < input.txt
+
+
+sudo mount -t vboxsf share /home/user/Desktop/share
+
+
+bison -d -o y.tab.c code.y
+gcc -c -g -I.. y.tab.c
+flex -o lex.yy.c code.l
+gcc -c -g -I.. lex.yy.c
+gcc -o code y.tab.c lex.yy.c -ll
+./code < input.txt
+./smli < input.txt
+
+./code < ./test_data/01_1.lsp
+./smli < ./test_data/01_1.lsp
+
